@@ -1,33 +1,20 @@
-.tygr button {
-  background: none;
-  border: 1px solid black;
-  background-color: white;
-  display: flex;
-  align-items: center;
-  font-size: 18px;
-  padding: 8px;
-  position: relative;
-  transition: all 0.3s;
-  cursor: pointer;
-  margin: 8px;
-}
+.tygr-auth {
+  button {
+    background: none;
+    border: 1px solid black;
+    padding: 4px;
+    margin: 8px;
+    background-color: white;
 
-.tygr button::after {
-  content: '';
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  left: 0;
-  box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.3);
-  opacity: 0;
-  transition: opacity 0.3s;
-}
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.1);
+    }
+    &.selected {
+      background-color: rgba(0, 0, 0, 0.2);
+    }
 
-.tygr button:hover::after {
-  opacity: 1;
-}
-
-.tygr button:hover {
-  transform: translate(2px, 2px);
-  background-color: rgb(235, 235, 235);
+    svg {
+      margin: 0px 3px -2px 3px;
+    }
+  }
 }

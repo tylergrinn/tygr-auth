@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Sansita+Swashed&family=Bellota+Text:wght@700&display=swap');
+
 @import 'variables';
 
 @import '@tygr/logo/sass';
@@ -5,17 +7,17 @@
 
 @import 'components/modal';
 @import 'components/button';
+@import 'components/form';
 
-@import url('https://fonts.googleapis.com/css2?family=Sansita+Swashed&family=Bellota+Text:wght@700&display=swap');
-
-.tygr-login-modal {
+.tygr-auth {
   h3 {
-    font-family: 'Sansita Swashed', cursive;
+    font-family: $display;
   }
 
   button,
-  label {
-    font-family: 'Bellota Text', cursive;
+  label,
+  input {
+    font-family: $paragraph;
   }
 
   display: flex;
@@ -47,34 +49,5 @@
     border: none;
     padding: 0;
     pointer-events: none;
-  }
-
-  button {
-    background: none;
-    border: 1px solid black;
-    padding: 4px;
-    margin: 8px;
-    background-color: white;
-
-    &:hover {
-      background-color: rgba(0, 0, 0, 0.1);
-    }
-    &.selected {
-      background-color: rgba(0, 0, 0, 0.2);
-    }
-
-    svg {
-      margin: 0px 3px -2px 3px;
-    }
-  }
-
-  label {
-    margin: 0 8px;
-  }
-
-  input {
-    margin: 0 8px 8px 8px;
-    border: 1px solid black;
-    padding: 8px;
   }
 }
