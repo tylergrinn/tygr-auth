@@ -1,0 +1,42 @@
+<!DOCTYPE html><html lang="en-us"><head><meta charset="utf-8"><title>TyGr Auth browser demo</title><meta name="description" content="Login component for TyGr"><meta name="viewport" content="width=device-width,initial-scale=1"><script src="https://unpkg.com/react@16/umd/react.development.js"></script><script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script><script src="https://unpkg.com/@babel/standalone/babel.min.js"></script><style>html,
+      body,
+      #app {
+        height: 100%;
+        background-color: #423d5c;
+      }
+
+      body {
+        margin: 0;
+      }
+
+      #app {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      #header {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+      }
+
+      #header a {
+        margin: 8px;
+        padding: 8px;
+        color: grey;
+      }
+
+      [env='node'] [href='node.html'],
+      [env='browser'] [href='browser.html'],
+      [env='standalone'] [href='standalone.html'],
+      [env='sass'] [href='sass.html'] {
+        background-color: white;
+      }</style><link href="sass.d51d72430787c755afbf.css" rel="stylesheet"></head><body><div id="header"><a href="node.html">Node</a> <a href="browser.html">Browser</a> <a href="standalone.html">Standalone</a> <a href="sass.html">Sass</a></div><script>window.addEventListener('load', () => {
+        document
+          .getElementById('header')
+          .setAttribute('env', location.pathname.match(/\/([^\/]*.).html$/)[1]);
+      });</script><div id="app"></div><script src="sass.2a6d8d7c14ee6b7e1936.js"></script></body></html>
