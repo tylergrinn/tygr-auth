@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Logo from '../lib';
-import '../lib/tygr-logo.min.css';
+import Auth from '../lib';
+import '../lib/tygr-auth.min.css';
 
-ReactDOM.render(<Logo header="LOGO!" />, document.getElementById('app'));
+ReactDOM.render(<Auth />, document.getElementById('app'));

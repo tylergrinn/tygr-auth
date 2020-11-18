@@ -1,7 +1,7 @@
 const path = require('path');
 
-const PACKAGE_NAME = 'tygr-logo';
-const LIBRARY_NAME = 'TygrLogo';
+const PACKAGE_NAME = 'tygr-auth';
+const LIBRARY_NAME = 'TygrAuth';
 
 module.exports = {
   entry: {

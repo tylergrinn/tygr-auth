@@ -8,7 +8,7 @@ const ExcludeTagsPlugin = require('./html-webpack-exclude-tags-plugin');
 
 const PROD = process.env.NODE_ENV === 'production';
 
-const COMMON_NAME = 'TyGr Logo';
+const COMMON_NAME = 'TyGr Auth';
 
 const common = {
   output: {

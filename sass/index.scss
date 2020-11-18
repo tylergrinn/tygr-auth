@@ -1,104 +1,79 @@
 @import 'variables';
 
-@import url('https://fonts.googleapis.com/css2?family=Sansita+Swashed:wght@300&display=swap');
+@import '@tygr/logo/sass';
+@import '@tygr/tabs';
 
-.tygr-logo {
+@import 'components/modal';
+@import 'components/button';
+
+@import url('https://fonts.googleapis.com/css2?family=Sansita+Swashed&family=Bellota+Text:wght@700&display=swap');
+
+.tygr-login-modal {
+  h3 {
+    font-family: 'Sansita Swashed', cursive;
+  }
+
+  button,
+  label {
+    font-family: 'Bellota Text', cursive;
+  }
+
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: stretch;
 
-  svg {
-    z-index: 2;
-    margin-bottom: -40px;
-    margin-left: 22px;
-  }
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
 
-  h3 {
-    color: white;
-    margin: 0;
-    font-size: 28px;
-    font-family: Sansita Swashed, cursive;
+    h3 {
+      margin-left: 8px;
+    }
   }
 
-  .cls-1,
-  .cls-2 {
-    fill: none;
-    stroke-linecap: round;
-    stroke-miterlimit: 10;
-    stroke-width: 72px;
+  [data-tab] {
+    transition: opacity 0.3s, max-height 0.3s, margin 0.3s, border 0.3s,
+      padding 0.3s;
+    max-height: 44px;
+    overflow: visible;
   }
 
-  .cls-1 {
-    stroke: $accent-1;
-    animation: _cls-1 3s infinite;
+  @include tabs(login, register, reset-password, local, external) {
+    opacity: 0;
+    max-height: 0;
+    margin: 0 8px;
+    border: none;
+    padding: 0;
   }
 
-  .cls-2 {
-    stroke: $accent-2;
-    animation: _cls-2 3s infinite;
-  }
-}
+  button {
+    background: none;
+    border: 1px solid black;
+    padding: 4px;
+    margin: 8px;
+    background-color: white;
 
-@keyframes _cls-1 {
-  0% {
-    stroke-dasharray: 1 3475;
-    stroke-dashoffset: -3475;
-  }
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.1);
+    }
+    &.selected {
+      background-color: rgba(0, 0, 0, 0.2);
+    }
 
-  /* T */
-  25% {
-    stroke-dasharray: 361 2000;
-    stroke-dashoffset: -1612;
-  }
-  40% {
-    stroke-dasharray: 361 2000;
-    stroke-dashoffset: -1612;
+    svg {
+      margin: 0px 3px -2px 3px;
+    }
   }
 
-  /* G */
-  65% {
-    stroke-dasharray: 1048 2963;
-    stroke-dashoffset: 0;
-  }
-  70% {
-    stroke-dasharray: 1048 2963;
-    stroke-dashoffset: 0;
+  label {
+    margin: 0 8px;
   }
 
-  100% {
-    stroke-dasharray: 1 3900;
-    stroke-dashoffset: 425;
-  }
-}
-
-@keyframes _cls-2 {
-  0% {
-    stroke-dasharray: 1 2800;
-    stroke-dashoffset: 0;
-  }
-
-  /* T */
-  25% {
-    stroke-dasharray: 445 2111;
-    stroke-dashoffset: -158;
-  }
-  40% {
-    stroke-dasharray: 445 2111;
-    stroke-dashoffset: -158;
-  }
-
-  /* G */
-  65% {
-    stroke-dasharray: 183 1518;
-    stroke-dashoffset: -1518;
-  }
-  70% {
-    stroke-dasharray: 183 1518;
-    stroke-dashoffset: -1518;
-  }
-
-  100% {
-    stroke-dasharray: 1 2800;
-    stroke-dashoffset: -2711;
+  input {
+    margin: 0 8px 8px 8px;
+    border: 1px solid black;
+    padding: 8px;
   }
 }

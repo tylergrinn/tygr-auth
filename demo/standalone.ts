@@ -1,4 +1,4 @@
-import Logo from '../lib/standalone';
-import '../lib/tygr-logo.min.css';
+import Auth from '../lib/standalone';
+import '../lib/tygr-auth.min.css';
 
-Logo.mount(document.getElementById('app'));
+Auth.mount(document.getElementById('app'));

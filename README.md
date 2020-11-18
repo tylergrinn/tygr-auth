@@ -1,8 +1,8 @@
-# Tygr Logo
+# Tygr Auth
 
-[Demo](https://tylergrinn.github.io/tygr-logo)
+[Demo](https://tylergrinn.github.io/tygr-auth)
 
-[Forking Guide](https://github.com/tylergrinn/tygr-logo/blob/main/docs/forking.md)
+[Forking Guide](https://github.com/tylergrinn/tygr-auth/blob/main/docs/forking.md)
 
 This is a react component packaged for three environments: node, browser, and standalone.
 
@@ -17,25 +17,23 @@ This is a react component packaged for three environments: node, browser, and st
 Installation:
 
 ```cmd
-npm i --save @tygr/logo
+npm i --save @tygr/auth
 ```
 
 Usage (jsx):
 
 ```jsx
-import Logo from '@tygr/logo';
+import Auth from '@tygr/auth';
 
 // Import styles. Make sure there is a style loader specified in your
 // webpack config
-import '@tygr/logo/lib/tygr-logo.min.css';
+import '@tygr/auth/lib/tygr-auth.min.css';
 
 export default function MyComponent() {
   return (
     <div>
-      <h1>Logo usage example</h1>
-      <Logo />
-      {/* Add a custom header*/}
-      <Logo header="LOGO!" />
+      <h1>Auth usage example</h1>
+      <Auth />
     </div>
   );
 }
@@ -45,7 +43,7 @@ export default function MyComponent() {
 
 Usage:
 
-When included via script tag, the component is exposed as a window library named 'TygrLogo'
+When included via script tag, the component is exposed as a window library named 'TygrAuth'
 
 ```html
 <html>
@@ -54,17 +52,17 @@ When included via script tag, the component is exposed as a window library named
     <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
-    <script src="https://tylergrinn.github.io/tygr-logo/lib/tygr-logo.min.js"></script>
+    <script src="https://tylergrinn.github.io/tygr-auth/lib/tygr-auth.min.js"></script>
     <link
       rel="stylesheet"
-      href="https://tylergrinn.github.io/tygr-logo/lib/tygr-logo.min.css"
+      href="https://tylergrinn.github.io/tygr-auth/lib/tygr-auth.min.css"
     />
   </head>
   <body>
     <div id="app"></div>
 
     <script type="text/babel">
-      ReactDOM.render(<TygrLogo />, document.getElementById('app'));
+      ReactDOM.render(<TygrAuth />, document.getElementById('app'));
     </script>
   </body>
 </html>
@@ -75,7 +73,7 @@ When included via script tag, the component is exposed as a window library named
 Installation:
 
 ```cmd
-npm i --save @tygr/logo
+npm i --save @tygr/auth
 ```
 
 Usage:
@@ -83,42 +81,42 @@ Usage:
 ```jsx
 
 // Vanilla JS
-import Logo from '@tygr/logo/lib/standalone';
+import Auth from '@tygr/auth/lib/standalone';
 
-const el = document.getElementById('tygr-logo');
+const el = document.getElementById('tygr-auth');
 
-Logo.mount(el);
+Auth.mount(el);
 
 // Vue
 <template>
 <div>
-  <div ref="tygr-logo"></div>
+  <div ref="tygr-auth"></div>
 </div>
 </template>
 
 <script>
-import Logo from '@tygr/logo/lib/standalone';
+import Auth from '@tygr/auth/lib/standalone';
 
 export default {
   mounted() {
-    Logo.mount(this.$refs['tygr-logo']);
+    Auth.mount(this.$refs['tygr-auth']);
   },
 };
 </script>
 
 // Angular Typescript
 import { Component, ElementRef, ViewChild } from '@angular/core';
-import Logo from '@tygr/logo/lib/standalone';
+import Auth from '@tygr/auth/lib/standalone';
 
 @Component({
   selector: 'app-root',
-  template: '<div><div #tygr-logo></div></div>',
+  template: '<div><div #tygr-auth></div></div>',
 })
-export class LogoComponent  {
-  @ViewChild('tygr-logo') el: ElementRef;
+export class AuthComponent  {
+  @ViewChild('tygr-auth') el: ElementRef;
 
   ngAfterViewInit() {
-    Logo.mount(this.el.nativeElement);
+    Auth.mount(this.el.nativeElement);
   }
 }
 ```
@@ -135,5 +133,5 @@ Make sure to reassign any sass variables before importing the `sass` library:
 $accent-1: white;
 $accent-2: yellow;
 
-@import '@tygr/logo/sass';
+@import '@tygr/auth/sass';
 ```
