@@ -14,11 +14,11 @@ deploy:
     edge: true
     github_token: $GITHUB_TOKEN
     local_dir: dist
-# - provider: npm
-#     on:
-#       branch: main
-#       tags: true
-#       repo: tylergrinn/tygr-auth
-#     edge: true
-#     email: tylergrinn@gmail.com
-#     api_token: $NPM_TOKEN
+  - provider: npm
+    on:
+      branch: main
+      tags: true
+      repo: tylergrinn/tygr-auth
+    edge: true
+    email: tylergrinn@gmail.com
+    api_token: $NPM_TOKEN

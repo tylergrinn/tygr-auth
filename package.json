@@ -1,6 +1,6 @@
 {
   "name": "@tygr/auth",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Auth for tygr",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
