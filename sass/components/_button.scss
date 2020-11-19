@@ -1,5 +1,6 @@
 .tygr-auth {
-  button {
+  button,
+  input[type='submit'] {
     background: none;
     border: 1px solid black;
     padding: 4px;

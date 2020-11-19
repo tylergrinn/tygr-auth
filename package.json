@@ -131,6 +131,6 @@
   },
   "dependencies": {
     "@tygr/logo": "^3.0.0",
-    "@tygr/tabs": "^2.1.0"
+    "@tygr/switch": "^1.0.0"
   }
 }

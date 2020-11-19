@@ -1,0 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Sansita+Swashed&family=Bellota+Text:wght@700&display=swap');
+
+.tygr-auth {
+  h3 {
+    font-family: $display;
+  }
+
+  button,
+  label,
+  input {
+    font-family: $paragraph;
+  }
+}

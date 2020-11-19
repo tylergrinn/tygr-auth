@@ -1,11 +1,21 @@
 .tygr-auth {
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+
   label {
     margin: 0 8px;
   }
 
   input {
+    display: inline-block;
     margin: 0 8px 8px 8px;
     border: 1px solid black;
     padding: 8px;
+
+    &:invalid:not(:placeholder-shown) {
+      border: 1px solid red;
+    }
   }
 }
