@@ -1,169 +1,63 @@
-import Logo from '@tygr/logo';
 import useSwitch from '@tygr/switch';
-import React, { FormEvent, PropsWithChildren } from 'react';
-import * as actions from './actions';
-import { Github, Google, Twitter } from './components/icons';
-import useInput from './hooks/use-input';
-import invalidMessage from './util/invalid-message';
+import React, { FC, useEffect } from 'react';
+import Login from './components/Login';
+import * as Spinners from './components/Spinners';
+import User from './components/User';
+import useAuthStore, { actions, AuthStore } from './store';
 
-export default function LoginModal(props: PropsWithChildren<{}>) {
-  const { children } = props;
+interface AccountProps {
+  state: AuthStore['State'];
+  dispatch: AuthStore['Dispatch'];
+}
 
-  const [authContainer, setAuth, LOGIN, REGISTER, RESET_PASSWORD] = useSwitch(
-    { name: 'auth' },
+export interface AuthProps {
+  Header?: FC;
+  Account?: FC<AccountProps>;
+  google: boolean;
+  twitter: boolean;
+  github: boolean;
+}
+
+export default function Auth(props: AuthProps) {
+  const [state, , dispatch] = useAuthStore();
+
+  useEffect(() => dispatch(actions.init), []);
+  useEffect(() => {
+    if (state.error) alert(state.error);
+  }, [state.error]);
+
+  const { loading, user } = state;
+  const { Header, Account, google, twitter, github } = props;
+
+  const [pageContainer, setPage] = useSwitch(
+    { name: 'page' },
+    'loading',
     'login',
-    'register',
-    'reset-password'
+    'user'
   );
-
-  const [provContainer, setProv, LOCAL, EXTERNAL] = useSwitch(
-    { name: 'prov' },
-    'local',
-    'external'
-  );
-
-  const [email, onEmailChange] = useInput();
-  const [password, onPasswordChange] = useInput();
-
-  const onFormSubmit = (ev: FormEvent) => {
-    ev.preventDefault();
-    switch ((ev as any).target.elements['action']) {
-      case 'Login':
-        actions.login(email, password);
-        break;
-      case 'Register':
-        actions.register(email, password);
-        break;
-      case 'Reset Password':
-        actions.resetPassword(email);
-        break;
-    }
-    return true;
-  };
+  const currentPage = loading ? 'loading' : user ? 'user' : 'login';
+  useEffect(setPage(currentPage), [loading, user]);
 
   return (
-    <div className="tygr-auth" {...authContainer} {...provContainer}>
-      {children || (
-        <div className="header">
-          <Logo height="32px" />
-          <h3>TyGr Login</h3>
-        </div>
-      )}
-
-      <nav>
-        <button
-          id="login"
-          type="button"
-          onClick={setAuth('login')}
-          className={EXTERNAL ? 'selected expanded' : LOGIN ? 'selected' : ''}
+    <div {...pageContainer} className="tygr-auth">
+      <div data-page="user">
+        <User state={state} dispatch={dispatch}>
+          {Account && <Account state={state} dispatch={dispatch} />}
+        </User>
+      </div>
+      <div data-page="loading">
+        <Spinners.Large />
+      </div>
+      <div data-page="login">
+        <Login
+          dispatch={dispatch}
+          state={state}
+          google={google}
+          twitter={twitter}
+          github={github}
         >
-          Login{EXTERNAL ? '/Register' : ''}
-        </button>
-        <button
-          type="button"
-          data-prov="local"
-          onClick={setAuth('register')}
-          id="register"
-          className={REGISTER ? 'selected' : ''}
-        >
-          Register
-        </button>
-        <button
-          type="button"
-          onClick={() => {
-            setAuth('reset-password')();
-            setProv('local')();
-          }}
-          className={RESET_PASSWORD ? 'selected' : "'"}
-        >
-          Reset Password
-        </button>
-      </nav>
-
-      <nav data-auth="!reset-password">
-        <button
-          type="button"
-          onClick={setProv('local')}
-          className={LOCAL ? 'selected' : ''}
-        >
-          Local
-        </button>
-        <button
-          type="button"
-          onClick={setProv('external')}
-          className={EXTERNAL ? 'selected' : ''}
-        >
-          Use Provider:
-          <Google />
-          <Github />
-          <Twitter />
-        </button>
-      </nav>
-
-      <form data-prov="local" onSubmit={onFormSubmit}>
-        <label htmlFor="email">Email Address</label>
-        <input
-          placeholder="Enter your email"
-          required
-          id="email"
-          value={email}
-          onChange={onEmailChange}
-          type="email"
-        />
-
-        <label htmlFor="password" data-auth="!reset-password">
-          Password
-        </label>
-        <input
-          placeholder="Enter password"
-          required={LOGIN || REGISTER}
-          id="password"
-          data-auth="!reset-password"
-          value={password}
-          onChange={onPasswordChange}
-          minLength={6}
-          type="password"
-        />
-
-        <label htmlFor="confirm-password" data-auth="register">
-          Confirm Password
-        </label>
-        <input
-          placeholder="Confirm password"
-          required={REGISTER}
-          id="confirm-password"
-          data-auth="register"
-          type="password"
-          pattern={password}
-          {...invalidMessage('Passwords do not match')}
-        />
-
-        <input data-auth="login" type="submit" value="Login" />
-        <input
-          name="action"
-          type="submit"
-          value="Register"
-          data-auth="register"
-        />
-        <input
-          name="action"
-          type="submit"
-          value="Reset Password"
-          data-auth="reset-password"
-        />
-      </form>
-
-      <div className="providers" data-prov="external">
-        <button name="action" value="Google" onClick={actions.google}>
-          <Google /> Sign in with Google
-        </button>
-        <button name="action" value="Github" onClick={actions.github}>
-          <Github /> Sign in with Github
-        </button>
-        <button name="action" value="Twitter" onClick={actions.twitter}>
-          <Twitter />
-          Sign in with Twitter
-        </button>
+          {Header && <Header />}
+        </Login>
       </div>
     </div>
   );

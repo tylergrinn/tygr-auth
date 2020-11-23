@@ -1,10 +1,12 @@
 /** @type {import('webpack').Configuration} */
+require('dotenv').config();
 const { merge } = require('webpack-merge');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ExcludeTagsPlugin = require('./html-webpack-exclude-tags-plugin');
+const webpack = require('webpack');
 
 const PROD = process.env.NODE_ENV === 'production';
 
@@ -39,6 +41,11 @@ const common = {
       filename: '[name].[contenthash].css',
     }),
     new ExcludeTagsPlugin(),
+    new webpack.DefinePlugin({
+      'process.env.AUTH_API_BASE_URL': JSON.stringify(
+        process.env.AUTH_API_BASE_URL
+      ),
+    }),
   ],
 };
 

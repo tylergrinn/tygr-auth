@@ -1,5 +1,29 @@
 $accent-1: rgba(0, 0, 0, 0.4) !default;
 $accent-2: rgba(0, 0, 0, 0.7) !default;
 
-$display: 'Sansita Swashed', cursive;
-$paragraph: 'Bellota Text', cursive;
+$display: 'Sansita Swashed', cursive !default;
+$paragraph: 'Bellota Text', cursive !default;
+
+$transition-duration: 400ms !default;
+$timingFunction: linear !default;
+$transition: opacity $timingFunction $transition-duration,
+  max-height $timingFunction $transition-duration,
+  margin $timingFunction $transition-duration,
+  border $timingFunction $transition-duration,
+  padding $timingFunction $transition-duration,
+  transform $timingFunction $transition-duration;
+
+$dot: black !default;
+$dot-duration: 1s;
+
+@mixin hide {
+  opacity: 0;
+  max-height: 0;
+  margin: 0 8px;
+  border: none;
+  padding: 0;
+  pointer-events: none;
+  visibility: hidden;
+  transition: $transition, visibility 0s $transition-duration;
+  transform: scaleY(0);
+}

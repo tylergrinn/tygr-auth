@@ -6,60 +6,7 @@
 @import 'components/button';
 @import 'components/form';
 @import 'components/header';
-
-.tygr-auth {
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-
-  .header {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .providers {
-    display: flex;
-    flex-direction: column;
-  }
-
-  $duration: 300ms;
-  $transition: opacity $duration, max-height $duration, margin $duration,
-    border $duration, padding $duration, transform $duration;
-
-  [data-auth],
-  [data-prov] {
-    transition: $transition;
-    max-height: 232px;
-    overflow: visible;
-    transform-origin: top center;
-  }
-
-  @mixin hide {
-    opacity: 0;
-    max-height: 0;
-    margin: 0 8px;
-    border: none;
-    padding: 0;
-    pointer-events: none;
-    visibility: hidden;
-    transition: $transition, visibility 0s $duration;
-    transform: scaleY(0);
-  }
-
-  @include switch('auth', login, register, reset-password) {
-    @include hide;
-  }
-
-  @include switch('prov', local, external) {
-    @include hide;
-
-    &#register {
-      display: none;
-    }
-  }
-
-  #login.expanded {
-    margin-right: 30px;
-  }
-}
+@import 'components/login';
+@import 'components/auth';
+@import 'components/spinner';
+@import 'components/user';

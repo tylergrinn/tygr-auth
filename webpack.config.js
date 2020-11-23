@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 
 const PACKAGE_NAME = 'tygr-auth';
 const LIBRARY_NAME = 'TygrAuth';
@@ -28,4 +29,11 @@ module.exports = {
   devtool: process.env.NODE_ENV === 'production' ? false : 'source-map',
   mode: process.env.NODE_ENV || 'development',
   externals: { react: 'React' },
+  plugins: [
+    new webpack.DefinePlugin({
+      'process.env.AUTH_API_BASE_URL': JSON.stringify(
+        process.env.AUTH_API_BASE_URL
+      ),
+    }),
+  ],
 };

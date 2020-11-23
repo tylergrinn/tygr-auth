@@ -1,0 +1,49 @@
+@use 'sass:math';
+
+.tygr-auth .spinner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 16px;
+
+  &.spinner-sm {
+    padding: 5px 0;
+  }
+
+  p {
+    margin: 0 14px;
+  }
+
+  @for $i from 1 through 9 {
+    div:nth-child(#{$i}) {
+      display: flex;
+      align-items: center;
+
+      div {
+        width: 16px;
+        height: 16px;
+        margin: 8px;
+        border-radius: 50%;
+        background: $dot;
+        animation: _spinner $dot-duration linear infinite;
+      }
+
+      @for $j from 1 through 9 {
+        div:nth-child(#{$j}) {
+          animation-delay: $dot-duration * random() - $dot-duration;
+        }
+      }
+    }
+  }
+
+  @keyframes _spinner {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.5;
+    }
+  }
+}

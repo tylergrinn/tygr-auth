@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Auth from './Auth';
+import Auth, { AuthProps } from './Auth';
 
 export default {
-  mount: (el: Element | DocumentFragment | null) => {
-    ReactDOM.render(React.createElement(Auth), el);
+  mount: (el: Element | DocumentFragment | null, props: AuthProps) => {
+    ReactDOM.render(React.createElement(Auth, props), el);
   },
 };
