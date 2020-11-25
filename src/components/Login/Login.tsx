@@ -14,6 +14,13 @@ interface LoginProps {
   github?: boolean;
 }
 
+const getProviderLink = (provider: string) => {
+  const url = new URL(`${API_BASE_URL}/${provider}`);
+  const params = new URLSearchParams({ redirect: location.href });
+  url.search = params.toString();
+  return url.href;
+};
+
 export default function Login(props: PropsWithChildren<LoginProps>) {
   const { children, dispatch, state, google, twitter, github } = props;
 
@@ -96,7 +103,7 @@ export default function Login(props: PropsWithChildren<LoginProps>) {
           <a
             className="provider"
             data-prov="external"
-            href={API_BASE_URL + '/google'}
+            href={getProviderLink('google')}
           >
             <icons.Google /> Sign in with Google
           </a>
@@ -105,7 +112,7 @@ export default function Login(props: PropsWithChildren<LoginProps>) {
           <a
             className="provider"
             data-prov="external"
-            href={API_BASE_URL + '/github'}
+            href={getProviderLink('github')}
           >
             <icons.Github /> Sign in with Github
           </a>
@@ -114,7 +121,7 @@ export default function Login(props: PropsWithChildren<LoginProps>) {
           <a
             className="provider"
             data-prov="external"
-            href={API_BASE_URL + '/twitter'}
+            href={getProviderLink('twitter')}
           >
             <icons.Twitter />
             Sign in with Twitter
