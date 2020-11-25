@@ -14,41 +14,6 @@
     flex-direction: column;
   }
 
-  [data-auth],
-  [data-prov],
-  [data-reset] {
-    transition: $transition;
-    max-height: 44px;
-    overflow: visible;
-    transform-origin: top center;
-  }
-
-  @include switch('auth', login, register, reset) {
-    @include hide;
-  }
-
-  @include switch('prov', local, external) {
-    @include hide;
-
-    &#register {
-      display: none;
-    }
-  }
-
-  &[data-auth-reset] {
-    @include switch('reset', 'initial', verify, password, success) {
-      @include hide;
-    }
-  }
-
-  .local {
-    p,
-    h3 {
-      margin: 8px;
-      max-width: 300px;
-    }
-  }
-
   #login.expanded {
     margin-right: 30px;
   }

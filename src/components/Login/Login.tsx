@@ -1,6 +1,7 @@
 import Logo from '@tygr/logo';
 import useSwitch from '@tygr/switch';
 import React, { PropsWithChildren } from 'react';
+import API_BASE_URL from '../../api-base-url';
 import { AuthStore } from '../../store';
 import * as icons from '../icons';
 import LocalForm from './LocalForm';
@@ -92,20 +93,32 @@ export default function Login(props: PropsWithChildren<LoginProps>) {
 
       <div className="providers">
         {google && (
-          <button data-prov="external">
+          <a
+            className="provider"
+            data-prov="external"
+            href={API_BASE_URL + '/google'}
+          >
             <icons.Google /> Sign in with Google
-          </button>
+          </a>
         )}
         {github && (
-          <button data-prov="external">
+          <a
+            className="provider"
+            data-prov="external"
+            href={API_BASE_URL + '/github'}
+          >
             <icons.Github /> Sign in with Github
-          </button>
+          </a>
         )}
         {twitter && (
-          <button data-prov="external">
+          <a
+            className="provider"
+            data-prov="external"
+            href={API_BASE_URL + '/twitter'}
+          >
             <icons.Twitter />
             Sign in with Twitter
-          </button>
+          </a>
         )}
       </div>
     </div>

@@ -48,7 +48,7 @@ export default function LocalForm(props: LocalFormProps) {
   };
 
   return (
-    <form {...resetContainer} onSubmit={onSubmit} className="local">
+    <form {...resetContainer} onSubmit={onSubmit} className="tygr-local">
       <label data-prov="local" htmlFor="email" data-reset="!success">
         Email Address
       </label>
@@ -80,7 +80,7 @@ export default function LocalForm(props: LocalFormProps) {
         data-auth="reset"
         data-reset="verify password"
         placeholder="Enter one-time code"
-        required={VERIFY}
+        required={RESET && VERIFY}
         id="code"
         type="password"
         onChange={onCodeChange}

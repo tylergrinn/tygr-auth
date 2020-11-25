@@ -1,12 +1,13 @@
 @import 'variables';
 
-@import '@tygr/switch';
+@import 'switches';
 
-@import 'components/fonts';
+@import 'components/auth';
 @import 'components/button';
+@import 'components/fonts';
 @import 'components/form';
 @import 'components/header';
+@import 'components/local';
 @import 'components/login';
-@import 'components/auth';
 @import 'components/spinner';
 @import 'components/user';

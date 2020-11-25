@@ -1,12 +1,4 @@
 .tygr-auth {
-  [data-page] {
-    transition: $transition;
-    max-height: 400px;
-    overflow: visible;
-    transform-origin: top center;
-  }
-
-  @include switch('page', loading, login, user) {
-    @include hide;
-  }
+  min-width: 320px;
+  transition: width 1s;
 }

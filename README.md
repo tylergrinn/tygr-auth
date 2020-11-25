@@ -135,3 +135,7 @@ $accent-2: yellow;
 
 @import '@tygr/auth/sass';
 ```
+
+Once someone on your service authenticates via Sign in with Twitter you must clearly display their Twitter identity. Twitter identity includes the person’s current Twitter @handle, avatar, and Twitter logo. Any display of someone’s Twitter followers on your service must clearly show that the relationship is associated with Twitter.
+
+[Display requirements](https://developer.twitter.com/en/developer-terms/display-requirements)

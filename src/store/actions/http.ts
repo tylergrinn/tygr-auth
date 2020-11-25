@@ -1,12 +1,4 @@
-declare global {
-  // eslint-disable-next-line no-var, no-inner-declarations
-  var AUTH_API_BASE_URL: string | undefined;
-}
-
-const API_BASE_URL =
-  global.AUTH_API_BASE_URL ||
-  process.env.AUTH_API_BASE_URL ||
-  'https://tygr.info/api/auth';
+import API_BASE_URL from '../../api-base-url';
 
 export const fetcher = <T = any>(
   input: Request | string,
@@ -38,6 +30,9 @@ const http = {
 
     return fetcher(url.href, {
       method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
       credentials: 'include',
       mode: 'cors',
     });

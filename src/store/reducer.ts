@@ -25,7 +25,11 @@ const authReducer: Reducer<AuthStore['State'], AuthStore['Mutation']> = (
     case 'logout':
       return { ...state, loading: false, user: undefined, error: undefined };
     case 'reset-loading':
-      return { ...state, reset: { ...state.reset, loading: true } };
+      return {
+        ...state,
+        error: undefined,
+        reset: { ...state.reset, loading: true },
+      };
     case 'set-reset-state':
       return {
         ...state,

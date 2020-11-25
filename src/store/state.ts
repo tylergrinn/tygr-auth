@@ -1,6 +1,7 @@
 interface User {
   email: string;
   id: string;
+  provider: 'local' | 'google' | 'twitter' | 'github';
   [key: string]: any;
 }
 

@@ -16,11 +16,29 @@ export default function User(props: PropsWithChildren<UserProps>) {
 
   return (
     <div className="tygr-user">
-      <div className="header">
-        <h3>Welcome, {state.user?.email}!</h3>
-        <p>Signed in locally</p>
-      </div>
-      {children || <p>You are now signed in.</p>}
+      {children || (
+        <div className="default">
+          <h3>Welcome, {state.user?.email}!</h3>
+          <p>
+            Signed in
+            {(() => {
+              switch (state.user?.provider || 'local') {
+                case 'local':
+                  return ' locally';
+                case 'google':
+                  return ' with Google';
+                case 'twitter':
+                  return ' with Twitter';
+                case 'github':
+                  return ' with Github';
+              }
+            })()}
+          </p>
+          <div className="content">
+            <p>You are now signed in.</p>
+          </div>
+        </div>
+      )}
       <div className="actions">
         <button onClick={() => dispatch(actions.logout)}>Sign out</button>
         <button onClick={deleteAccount}>Delete account</button>

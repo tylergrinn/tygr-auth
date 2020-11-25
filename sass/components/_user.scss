@@ -1,4 +1,15 @@
 .tygr-user {
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+
+  .default {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
   h3,
   p {
     margin: 8px;
@@ -8,9 +19,10 @@
     font-size: 12px;
   }
 
-  .header {
+  .content {
+    flex-grow: 1;
     display: flex;
+    justify-content: center;
     align-items: center;
-    justify-content: space-between;
   }
 }
