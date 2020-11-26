@@ -1,3 +1,4 @@
+import { createContext } from 'react';
 import useStore, { Store } from '../hooks/use-store';
 import * as actions from './actions';
 import type { Mutation } from './mutation';
@@ -11,3 +12,8 @@ export type AuthStore = Store<AuthState, Mutation>;
 export default function useAuthStore() {
   return useStore(authReducer, initialState);
 }
+
+export const AuthContext = createContext<[AuthState, AuthStore['Dispatch']]>([
+  initialState,
+  () => {},
+]);

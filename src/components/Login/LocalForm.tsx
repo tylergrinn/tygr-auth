@@ -1,7 +1,7 @@
 import useSwitch from '@tygr/switch';
-import React, { FormEvent, useEffect } from 'react';
+import React, { FormEvent, useContext, useEffect } from 'react';
 import useInput from '../../hooks/use-input';
-import { actions, AuthStore } from '../../store';
+import { actions, AuthContext } from '../../store';
 import invalidMessage from '../../util/invalid-message';
 import * as Spinners from '../Spinners';
 
@@ -9,18 +9,12 @@ interface LocalFormProps {
   LOGIN: boolean;
   REGISTER: boolean;
   RESET: boolean;
-  dispatch: AuthStore['Dispatch'];
-  state: AuthStore['State'];
 }
 
 export default function LocalForm(props: LocalFormProps) {
-  const {
-    LOGIN,
-    REGISTER,
-    RESET,
-    dispatch,
-    state: { reset },
-  } = props;
+  const { LOGIN, REGISTER, RESET } = props;
+
+  const [{ reset }, dispatch] = useContext(AuthContext);
 
   const [email, onEmailChange] = useInput();
   const [password, onPasswordChange] = useInput();

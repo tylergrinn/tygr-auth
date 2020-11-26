@@ -1,13 +1,9 @@
-import React, { PropsWithChildren } from 'react';
-import { actions, AuthStore } from '../store';
+import React, { PropsWithChildren, useContext } from 'react';
+import { actions, AuthContext } from '../store';
 
-interface UserProps {
-  state: AuthStore['State'];
-  dispatch: AuthStore['Dispatch'];
-}
-
-export default function User(props: PropsWithChildren<UserProps>) {
-  const { state, children, dispatch } = props;
+export default function User(props: PropsWithChildren<{}>) {
+  const { children } = props;
+  const [state, dispatch] = useContext(AuthContext);
 
   const deleteAccount = () => {
     if (confirm('Are you sure you want to delete your account?'))

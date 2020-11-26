@@ -2,13 +2,10 @@ import Logo from '@tygr/logo';
 import useSwitch from '@tygr/switch';
 import React, { PropsWithChildren } from 'react';
 import API_BASE_URL from '../../api-base-url';
-import { AuthStore } from '../../store';
 import * as icons from '../icons';
 import LocalForm from './LocalForm';
 
 interface LoginProps {
-  dispatch: AuthStore['Dispatch'];
-  state: AuthStore['State'];
   google?: boolean;
   twitter?: boolean;
   github?: boolean;
@@ -22,7 +19,7 @@ const getProviderLink = (provider: string) => {
 };
 
 export default function Login(props: PropsWithChildren<LoginProps>) {
-  const { children, dispatch, state, google, twitter, github } = props;
+  const { children, google, twitter, github } = props;
 
   const [authContainer, setAuth, LOGIN, REGISTER, RESET] = useSwitch(
     { name: 'auth' },
@@ -96,7 +93,7 @@ export default function Login(props: PropsWithChildren<LoginProps>) {
         </button>
       </nav>
 
-      <LocalForm {...{ LOGIN, REGISTER, RESET, dispatch, state }} />
+      <LocalForm {...{ LOGIN, REGISTER, RESET }} />
 
       <div className="providers">
         {google && (
