@@ -1,4 +1,4 @@
 import Auth from './Auth';
-export { actions } from './store';
+export { actions, AuthContext } from './store';
 
 export default Auth;

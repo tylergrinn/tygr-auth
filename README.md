@@ -1,5 +1,7 @@
 # Tygr Auth
 
+_Part of the [@tygr component library](https://tygr.info/@tygr)_
+
 [Demo](https://tylergrinn.github.io/tygr-auth)
 
 [Forking Guide](https://github.com/tylergrinn/tygr-auth/blob/main/docs/forking.md)
@@ -11,6 +13,18 @@ This is a react component packaged for three environments: node, browser, and st
 - Browser is for fast prototyping in the browser. You can add this component via a script tag. The react and react-dom script tags must be placed before the component script.
 
 - Standalone is for projects that do not use react. It exposes the `mount` function, which takes an HTML element.
+
+## [Sister module: auth express middleware](https://github.com/tylergrinn/tygr-auth-server.git)
+
+## Authentication base url
+
+In order to set the authentication server base url, add a global variable before loading the component script:
+
+```html
+<script>
+  var AUTH_API_BASE_URL = 'https://localhost:8080/auth';
+</script>
+```
 
 ## Node
 
@@ -33,7 +47,21 @@ export default function MyComponent() {
   return (
     <div>
       <h1>Auth usage example</h1>
-      <Auth />
+      <Auth
+        // Choose which providers to include
+        google
+        twitter
+        github
+        // Add a custom header to the login screen
+        Header={HeaderComponent}
+        /**
+         * Add a custom account page.
+         * You may use the `import { AuthContext } from '@tygr/auth'
+         * context in this component to dispatch account actions and
+         * get the state and user object.
+         */
+        Account={AccountComponent}
+      />
     </div>
   );
 }
@@ -62,7 +90,10 @@ When included via script tag, the component is exposed as a window library named
     <div id="app"></div>
 
     <script type="text/babel">
-      ReactDOM.render(<TygrAuth />, document.getElementById('app'));
+      ReactDOM.render(
+        <TygrAuth google twitter github />,
+        document.getElementById('app')
+      );
     </script>
   </body>
 </html>
@@ -99,7 +130,11 @@ import Auth from '@tygr/auth/lib/standalone';
 
 export default {
   mounted() {
-    Auth.mount(this.$refs['tygr-auth']);
+    Auth.mount(this.$refs['tygr-auth'], {
+      google: true,
+      twitter: true,
+      github: true,
+    });
   },
 };
 </script>
@@ -116,7 +151,11 @@ export class AuthComponent  {
   @ViewChild('tygr-auth') el: ElementRef;
 
   ngAfterViewInit() {
-    Auth.mount(this.el.nativeElement);
+    Auth.mount(this.el.nativeElement, {
+      google: true,
+      twitter: true,
+      github: true
+    });
   }
 }
 ```
@@ -135,6 +174,8 @@ $accent-2: yellow;
 
 @import '@tygr/auth/sass';
 ```
+
+# Compliance
 
 Once someone on your service authenticates via Sign in with Twitter you must clearly display their Twitter identity. Twitter identity includes the person’s current Twitter @handle, avatar, and Twitter logo. Any display of someone’s Twitter followers on your service must clearly show that the relationship is associated with Twitter.
 

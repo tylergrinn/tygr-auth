@@ -41,11 +41,6 @@ const common = {
       filename: '[name].[contenthash].css',
     }),
     new ExcludeTagsPlugin(),
-    new webpack.DefinePlugin({
-      'process.env.AUTH_API_BASE_URL': JSON.stringify(
-        process.env.AUTH_API_BASE_URL
-      ),
-    }),
   ],
 };
 
