@@ -7,10 +7,6 @@ export default function User(props: PropsWithChildren<{}>) {
   const hasChildren = !!children;
   const [{ user }, dispatch] = useContext(AuthContext);
 
-  if (!user) {
-    return <p>Not logged in</p>;
-  }
-
   const deleteAccount = () => {
     if (confirm('Are you sure you want to delete your account?'))
       dispatch(actions.deleteAccount);
@@ -22,11 +18,11 @@ export default function User(props: PropsWithChildren<{}>) {
         <ErrorBoundary>{children}</ErrorBoundary>
       ) : (
         <div className="default">
-          <h3>Welcome, {user.email}!</h3>
+          <h3>Welcome, {user ? user.email : ''}!</h3>
           <p>
             Signed in
             {(() => {
-              switch (user.provider) {
+              switch (user ? user.provider : '') {
                 case 'google':
                   return ' with Google';
                 case 'twitter':
