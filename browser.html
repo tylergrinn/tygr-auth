@@ -39,7 +39,12 @@
         document
           .getElementById('header')
           .setAttribute('env', location.pathname.match(/\/([^\/]*.).html$/)[1]);
-      });</script><div id="app"></div><script browser="" type="text/babel">ReactDOM.render(
-        <TygrAuth google twitter github />,
-        document.getElementById('app')
-      );</script></body></html>
+      });</script><div id="app"></div><script browser="" type="text/babel">function App() {
+        const store = TygrAuth.useAuthStore();
+        return (
+          <TygrAuth.Context.Provider value={store}>
+            <TygrAuth.Component google twitter github />
+          </TygrAuth.Context.Provider>
+        );
+      }
+      ReactDOM.render(<App />, document.getElementById('app'));</script></body></html>
