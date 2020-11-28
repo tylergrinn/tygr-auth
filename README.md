@@ -37,32 +37,36 @@ npm i --save @tygr/auth
 Usage (jsx):
 
 ```jsx
-import Auth from '@tygr/auth';
+import Auth, { AuthContext, useAuthStore } from '@tygr/auth';
 
 // Import styles. Make sure there is a style loader specified in your
 // webpack config
 import '@tygr/auth/lib/tygr-auth.min.css';
 
 export default function MyComponent() {
+  const authStore = useAuthStore();
+
   return (
-    <div>
-      <h1>Auth usage example</h1>
-      <Auth
-        // Choose which providers to include
-        google
-        twitter
-        github
-        // Add a custom header to the login screen
-        Header={HeaderComponent}
-        /**
-         * Add a custom account page.
-         * You may use the `import { AuthContext } from '@tygr/auth'
-         * context in this component to dispatch account actions and
-         * get the state and user object.
-         */
-        Account={AccountComponent}
-      />
-    </div>
+    <AuthContext.Provider value={authStore}>
+      <div>
+        <h1>Auth usage example</h1>
+        <Auth
+          // Choose which providers to include
+          google
+          twitter
+          github
+          // Add a custom header to the login screen
+          Header={HeaderComponent}
+          /**
+           * Add a custom account page.
+           * You may use the `import { AuthContext } from '@tygr/auth'
+           * context in this component to dispatch account actions and
+           * get the state and user object.
+           */
+          Account={AccountComponent}
+        />
+      </div>
+    </AuthContext.Provider>
   );
 }
 ```
@@ -71,7 +75,7 @@ export default function MyComponent() {
 
 Usage:
 
-When included via script tag, the component is exposed as a window library named 'TygrAuth'
+When included via script tag, the component, context, and store hook are exposed in a window library named 'TygrAuth'
 
 ```html
 <html>
@@ -90,10 +94,16 @@ When included via script tag, the component is exposed as a window library named
     <div id="app"></div>
 
     <script type="text/babel">
-      ReactDOM.render(
-        <TygrAuth google twitter github />,
-        document.getElementById('app')
-      );
+      function App() {
+        const store = TygrAuth.useAuthStore();
+        return (
+          <TygrAuth.Context.Provider value={store}>
+            <TygrAuth.Component google twitter github />
+          </TygrAuth.Context.Provider>
+        );
+      }
+
+      ReactDOM.render(<App />, document.getElementById('app'));
     </script>
   </body>
 </html>

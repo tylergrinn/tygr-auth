@@ -5,7 +5,7 @@ import ErrorBoundary from './ErrorBoundary';
 export default function User(props: PropsWithChildren<{}>) {
   const { children } = props;
   const hasChildren = !!children;
-  const [{ user }, dispatch] = useContext(AuthContext);
+  const [{ user }, , dispatch] = useContext(AuthContext);
 
   const deleteAccount = () => {
     if (confirm('Are you sure you want to delete your account?'))

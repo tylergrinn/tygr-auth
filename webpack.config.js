@@ -1,17 +1,15 @@
 const path = require('path');
-const webpack = require('webpack');
 
 const PACKAGE_NAME = 'tygr-auth';
 const LIBRARY_NAME = 'TygrAuth';
 
 module.exports = {
   entry: {
-    [`${PACKAGE_NAME}.min`]: './src/index.tsx',
+    [`${PACKAGE_NAME}.min`]: './src/browser.tsx',
   },
   output: {
     path: path.join(__dirname, 'lib'),
     libraryTarget: 'window',
-    libraryExport: 'default',
     library: LIBRARY_NAME,
   },
   module: {

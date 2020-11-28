@@ -28,6 +28,7 @@ export interface Store<S, T> {
     commit?: Commit<Mutation<T>>;
     dispatch?: Dispatch<S, Mutation<T>>;
   };
+  Context: [S, Commit<Mutation<T>>, Dispatch<S, Mutation<T>>];
 }
 
 export default function useStore<S, M>(

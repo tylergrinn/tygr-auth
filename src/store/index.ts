@@ -13,7 +13,8 @@ export default function useAuthStore() {
   return useStore(authReducer, initialState);
 }
 
-export const AuthContext = createContext<[AuthState, AuthStore['Dispatch']]>([
+export const AuthContext = createContext<AuthStore['Context']>([
   initialState,
+  () => {},
   () => {},
 ]);

@@ -14,7 +14,7 @@ interface LocalFormProps {
 export default function LocalForm(props: LocalFormProps) {
   const { LOGIN, REGISTER, RESET } = props;
 
-  const [{ reset }, dispatch] = useContext(AuthContext);
+  const [{ reset }, , dispatch] = useContext(AuthContext);
 
   const [email, onEmailChange] = useInput();
   const [password, onPasswordChange] = useInput();

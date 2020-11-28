@@ -1,6 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Auth from '../lib';
+import Auth, { AuthContext, useAuthStore } from '../lib';
 import './styles/main.scss';
 
-ReactDOM.render(<Auth google twitter github />, document.getElementById('app'));
+function App() {
+  const store = useAuthStore();
+  return (
+    <AuthContext.Provider value={store}>
+      <Auth google twitter github />
+    </AuthContext.Provider>
+  );
+}
+
+ReactDOM.render(<App />, document.getElementById('app'));

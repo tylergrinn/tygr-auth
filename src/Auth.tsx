@@ -1,9 +1,9 @@
 import useSwitch from '@tygr/switch';
-import React, { FC, useEffect } from 'react';
+import React, { FC, useContext, useEffect } from 'react';
 import Login from './components/Login';
 import * as Spinners from './components/Spinners';
 import User from './components/User';
-import useAuthStore, { actions, AuthContext } from './store';
+import { actions, AuthContext } from './store';
 
 export interface AuthProps {
   Header?: FC;
@@ -14,7 +14,7 @@ export interface AuthProps {
 }
 
 export default function Auth(props: AuthProps) {
-  const [state, , dispatch] = useAuthStore();
+  const [state, , dispatch] = useContext(AuthContext);
 
   const { loading, user, error } = state;
   const { Header, Account, google, twitter, github } = props;
@@ -35,20 +35,18 @@ export default function Auth(props: AuthProps) {
   useEffect(setPage(currentPage), [loading, user]);
 
   return (
-    <AuthContext.Provider value={[state, dispatch]}>
-      <div {...pageContainer} className="tygr-auth">
-        <div data-page="user">
-          <User>{Account && <Account />}</User>
-        </div>
-        <div data-page="loading">
-          <Spinners.Large />
-        </div>
-        <div data-page="login">
-          <Login google={google} twitter={twitter} github={github}>
-            {Header && <Header />}
-          </Login>
-        </div>
+    <div {...pageContainer} className="tygr-auth">
+      <div data-page="user">
+        <User>{Account && <Account />}</User>
       </div>
-    </AuthContext.Provider>
+      <div data-page="loading">
+        <Spinners.Large />
+      </div>
+      <div data-page="login">
+        <Login google={google} twitter={twitter} github={github}>
+          {Header && <Header />}
+        </Login>
+      </div>
+    </div>
   );
 }
