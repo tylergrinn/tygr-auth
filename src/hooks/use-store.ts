@@ -35,6 +35,8 @@ export default function useStore<S, M>(
   initialState: S
 ): [S, Commit<M>, Dispatch<S, M>] {
   const [state, commit] = useReducer(reducer, initialState);
-  const dispatch = (action: Action<S, M>) => action({ state, commit });
+  const dispatch = (action: Action<S, M>) => {
+    action({ state, commit });
+  };
   return [state, commit, dispatch];
 }
