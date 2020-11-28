@@ -1,8 +1,10 @@
 import React, { PropsWithChildren, useContext } from 'react';
 import { actions, AuthContext } from '../store';
+import ErrorBoundary from './ErrorBoundary';
 
 export default function User(props: PropsWithChildren<{}>) {
   const { children } = props;
+  const hasChildren = !!children;
   const [{ user }, dispatch] = useContext(AuthContext);
 
   if (!user) {
@@ -16,7 +18,9 @@ export default function User(props: PropsWithChildren<{}>) {
 
   return (
     <div className="tygr-user">
-      {children || (
+      {hasChildren ? (
+        <ErrorBoundary>{children}</ErrorBoundary>
+      ) : (
         <div className="default">
           <h3>Welcome, {user.email}!</h3>
           <p>

@@ -6,7 +6,7 @@ const LIBRARY_NAME = 'TygrAuth';
 
 module.exports = {
   entry: {
-    [`${PACKAGE_NAME}.min`]: './src/index.ts',
+    [`${PACKAGE_NAME}.min`]: './src/index.tsx',
   },
   output: {
     path: path.join(__dirname, 'lib'),
