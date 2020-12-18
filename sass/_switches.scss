@@ -1,4 +1,4 @@
-@import '@tygr/switch';
+@use '@tygr/switch';
 
 @import 'variables';
 
@@ -13,28 +13,28 @@
     @include show(44px);
   }
 
-  @include switch('page', loading, login, user) {
+  @include switch.switch('page', loading, login, user) {
     @include hide(300ms, ease-in);
   }
 }
 
 .tygr-login {
-  @include switch('auth', login, register, reset) {
-    @include hide();
-  }
-
-  @include switch('prov', local, external) {
+  @include switch.switch('auth', login, register, reset) {
     @include hide();
 
     &#register {
       display: none;
     }
   }
+
+  @include switch.switch('prov', local, external) {
+    @include hide();
+  }
 }
 
 .tygr-local {
-  [data-auth-reset] & {
-    @include switch('reset', 'initial', verify, password, success) {
+  @include switch.switchChild('auth', reset) {
+    @include switch.switch('reset', initial, verify, password, success) {
       @include hide();
     }
   }

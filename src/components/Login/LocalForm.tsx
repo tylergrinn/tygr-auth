@@ -52,7 +52,6 @@ export default function LocalForm(props: LocalFormProps) {
         placeholder="Enter your email"
         required
         id="email"
-        value={email}
         onChange={onEmailChange}
         type="email"
         disabled={RESET && !INITIAL}
@@ -90,7 +89,6 @@ export default function LocalForm(props: LocalFormProps) {
         required={LOGIN || REGISTER || PASSWORD}
         id="password"
         data-reset="password"
-        value={password}
         onChange={onPasswordChange}
         minLength={6}
         type="password"

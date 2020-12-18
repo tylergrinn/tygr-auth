@@ -1,6 +1,6 @@
 {
   "name": "@tygr/auth",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Auth for tygr",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -132,6 +132,6 @@
   },
   "dependencies": {
     "@tygr/logo": "^3.0.0",
-    "@tygr/switch": "^1.0.0"
+    "@tygr/switch": "^1.2.0"
   }
 }
