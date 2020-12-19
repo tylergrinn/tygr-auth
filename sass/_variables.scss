@@ -7,7 +7,7 @@ $paragraph: 'Bellota Text', cursive !default;
 $dot: black !default;
 $dot-duration: 1s;
 
-@mixin transition($duration: 300ms, $timing: linear, $delay: 0s, $hide: false) {
+@mixin transition($duration: 400ms, $timing: linear, $delay: 0s, $hide: false) {
   $visibility: null;
   @if ($hide) {
     // Delay setting visiblity until after animation is done
@@ -16,17 +16,18 @@ $dot-duration: 1s;
   transition: opacity $timing $duration $delay,
     max-height $timing $duration $delay, margin $timing $duration $delay,
     border $timing $duration $delay, padding $timing $duration $delay,
-    transform $timing $duration $delay, $visibility;
+    transform $timing $duration $delay, width $timing $duration $delay,
+    $visibility;
 }
 
-@mixin show($max-height, $duration: 300ms, $timing: linear, $delay: 0s) {
+@mixin show($max-height, $duration: 400ms, $timing: linear, $delay: 0s) {
   @include transition($duration, $timing, $delay, false);
   max-height: $max-height;
   overflow: visible;
   transform-origin: top center;
 }
 
-@mixin hide($duration: 300ms, $timing: linear, $delay: 0s) {
+@mixin hide($duration: 400ms, $timing: linear, $delay: 0s) {
   @include transition($duration, $timing, $delay, true);
   opacity: 0;
   max-height: 0;

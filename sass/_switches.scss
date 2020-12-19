@@ -4,7 +4,7 @@
 
 .tygr-auth {
   [data-page] {
-    @include show(400px, 300ms, ease-in, 150ms);
+    @include show(400px, 400ms, ease-out, 150ms);
   }
 
   [data-auth],
@@ -14,7 +14,7 @@
   }
 
   @include switch.switch('page', loading, login, user) {
-    @include hide(300ms, ease-in);
+    @include hide(400ms, ease-out);
   }
 }
 
@@ -28,7 +28,14 @@
   }
 
   @include switch.switch('prov', local, external) {
-    @include hide();
+    &:not(.disappear) {
+      @include hide();
+    }
+
+    &.disappear {
+      display: none;
+      pointer-events: none;
+    }
   }
 }
 

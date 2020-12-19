@@ -61,7 +61,7 @@ export default function Login(props: PropsWithChildren<LoginProps>) {
           data-prov="local"
           onClick={setAuth('register')}
           id="register"
-          className={REGISTER ? 'selected' : ''}
+          className={`disappear ${REGISTER ? 'selected' : ''}`}
         >
           Register
         </button>
