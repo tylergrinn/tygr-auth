@@ -2,9 +2,24 @@
 
 @import 'variables';
 
+@keyframes _expand-appear {
+  from {
+    transform: scaleY(0);
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}
+
 .tygr-auth {
+  position: relative;
+
   [data-page] {
-    @include show(400px, 400ms, ease-out, 150ms);
+    transform-origin: center top;
+    transition: transform 300ms ease-in-out, opacity 300ms ease-in;
+    animation: _expand-appear 300ms ease-in-out;
   }
 
   [data-auth],
@@ -14,7 +29,11 @@
   }
 
   @include switch.switch('page', loading, login, user) {
-    @include hide(400ms, ease-out);
+    position: absolute;
+    transform-origin: center bottom;
+    opacity: 0;
+    transform: scaleY(0);
+    top: 0;
   }
 }
 
